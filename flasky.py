@@ -12,3 +12,6 @@ migrate = Migrate(app, db)
 def make_shell_context():
     return dict(db=db, User=User, Role=Role, Permission=Permission)
 
+
+if __name__ == '__main__':
+    app.run(debug=True)

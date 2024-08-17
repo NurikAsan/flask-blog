@@ -26,7 +26,6 @@ def unconfirmed():
 
 
 @auth.route('/login', methods=['GET', 'POST'])
-@login_manager.login
 def login():
     form = LoginForm()
     if form.validate_on_submit():
@@ -45,7 +44,7 @@ def login():
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        user = User(email=form.email.data,
+        user = User(email=form.email.data.lower(),
                     username=form.username.data,
                     password=form.password.data)
         db.session.add(user)

@@ -88,6 +88,7 @@ class User(UserMixin, Base):
     about_me = db.Column(db.Text())
     member_since = db.Column(db.DateTime(), default=datetime.utcnow)
     last_seen = db.Column(db.DateTime(), default=datetime.utcnow)
+    avatar_hash = db.Column(db.String(32))
 
     def __init__(self, **kwargs):
         super(User, self).__init__(**kwargs)
@@ -109,7 +110,7 @@ class User(UserMixin, Base):
     def password(self):
         raise AttributeError('password is not a readable attribute')
 
-    @property.setter
+    @password.setter
     def password(self, password: str) -> None:
         self.password_hash = generate_password_hash(password)
 
