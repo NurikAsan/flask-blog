@@ -27,6 +27,9 @@ def create_app(config_name='default'):
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint, url_prefix='/auth')
 
+    from .api import api as api_blueprint
+    app.register_blueprint(api_blueprint, url_prefix='/api/v1')
+
     login_manager.init_app(app)
     boostrap.init_app(app)
     moment.init_app(app)
